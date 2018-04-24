@@ -8,10 +8,12 @@ $(document).ready(function() {
     var userChoice = $("#userInput").val();
     console.log(userChoice);
     topics.push(userChoice);
+    console.log(topics);
     addButtons();
   });
 
   var addButtons = function() {
+    $("#buttons-go-here").empty();
     for (var i = 0; i < topics.length; i++) {
       var button = $("<button class='topic_button'>").attr("topic", topics[i]).text(topics[i]);
       $("#buttons-go-here").append(button);
@@ -59,7 +61,6 @@ $(document).ready(function() {
 
                   gifImage.attr("src", results[i].images.fixed_height.url);
 
-                  // Appending the paragraph and personImage we created to the "gifDiv" div we created
                   gifDiv.append(p);
                   gifDiv.append(gifImage);
 
