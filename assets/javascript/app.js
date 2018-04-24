@@ -1,14 +1,33 @@
 $(document).ready(function() {
+  var topics = ["fail", "yas", "corgi", "side eye", "smh", "trending", "comedy", "politics", "SNL"];
+  for (var i = 0; i < topics.length; i++) {
+    var button = $("<button class='topic_button'>").attr("topic", topics[i]).text(topics[i]);
+    $("#buttons-go-here").append(button);
+  }
+  $("#search_button").on("click", function() {
+    var userChoice = $("#userInput").val();
+    console.log(userChoice);
+    topics.push(userChoice);
+    addButtons();
+  });
 
-  $("button").on("click", function() {
+  var addButtons = function() {
+    for (var i = 0; i < topics.length; i++) {
+      var button = $("<button class='topic_button'>").attr("topic", topics[i]).text(topics[i]);
+      $("#buttons-go-here").append(button);
+    }
+};
+
+  $(".topic_button").on("click", function() {
     // In this case, the "this" keyword refers to the button that was clicked
-    var topics = $(this).attr("topic");
+    var topic = $(this).attr("topic");
 
-    console.log(topics);
+
+    console.log(topic);
 
     // Constructing a URL to search Giphy for the name of the person who said the quote
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-      topics + "&api_key=UqKLNuUwCYlpk5JIP7BxKsOn8XXOCFhV&limit=10";
+      topic + "&api_key=UqKLNuUwCYlpk5JIP7BxKsOn8XXOCFhV&limit=10";
 
 
           $.ajax({
